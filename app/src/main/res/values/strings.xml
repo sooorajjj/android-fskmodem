@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FSKModem Terminal</string>
+
+    <string name="input">Input</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="live8bit">Encode Live 8-bit</string>
+    <string name="decode_live">Decode Live</string>
+    <string name="pcm">Decode PCM</string>
+    <string name="terminal">Terminal</string>
+    <string name="wav">Decode WAV</string>
+    <string name="encode_live_mono">Encode Live Mono</string>
+    <string name="encode_live_stereo">Encode Live Stereo</string>
+
+</resources>
