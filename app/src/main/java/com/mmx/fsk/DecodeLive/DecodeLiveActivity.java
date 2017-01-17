@@ -29,7 +29,7 @@ import com.mmx.fsk.R;
 import com.mmx.fsk.fskmodem.FSKConfig;
 import com.mmx.fsk.fskmodem.FSKDecoder;
 import com.mmx.fsk.fskmodem.FSKDecoder.FSKDecoderCallback;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 import android.media.AudioFormat;
@@ -37,7 +37,7 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder.AudioSource;
 import android.os.Bundle;
 
-public class DecodeLiveActivity extends ActionBarActivity {
+public class DecodeLiveActivity extends AppCompatActivity {
 
 	protected FSKConfig mConfig;
 	protected FSKDecoder mDecoder;
@@ -117,7 +117,7 @@ public class DecodeLiveActivity extends ActionBarActivity {
 			thread.start();
 		}
 		else {
-			Log.i("FSKDecoder", "Please check the recorder settings, something is wrong!");
+			Log.e("FSKDecoder", "Please check the recorder settings, something is wrong!");
 		}
 	}
 	

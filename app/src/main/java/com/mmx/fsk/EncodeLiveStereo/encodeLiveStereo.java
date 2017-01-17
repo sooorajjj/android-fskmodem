@@ -32,14 +32,14 @@ import com.mmx.fsk.fskmodem.FSKDecoder;
 import com.mmx.fsk.fskmodem.FSKDecoder.FSKDecoderCallback;
 import com.mmx.fsk.fskmodem.FSKEncoder;
 import com.mmx.fsk.fskmodem.FSKEncoder.FSKEncoderCallback;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Bundle;
 
-public class encodeLiveStereo extends ActionBarActivity {
+public class encodeLiveStereo extends AppCompatActivity {
 
 	public static final String ENCODER_DATA = "Hello World! This text has been encoded realtime and then fed to audio playback stream and the FSK decoder that actually displays it.";
 	

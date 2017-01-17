@@ -31,7 +31,7 @@ import com.mmx.fsk.fskmodem.FSKDecoder;
 import com.mmx.fsk.fskmodem.FSKDecoder.FSKDecoderCallback;
 import com.mmx.fsk.fskmodem.FSKEncoder.FSKEncoderCallback;
 import com.mmx.fsk.fskmodem.FSKEncoder;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -50,7 +50,7 @@ import android.media.AudioTrack;
 import android.media.MediaRecorder.AudioSource;
 import android.os.Bundle;
 
-public class terminal extends ActionBarActivity {
+public class terminal extends AppCompatActivity {
 
 	protected FSKConfig mConfig;
 	protected FSKEncoder mEncoder;

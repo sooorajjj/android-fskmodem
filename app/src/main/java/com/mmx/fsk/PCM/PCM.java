@@ -33,11 +33,11 @@ import com.mmx.fsk.R;
 import com.mmx.fsk.fskmodem.FSKConfig;
 import com.mmx.fsk.fskmodem.FSKDecoder;
 import com.mmx.fsk.fskmodem.FSKDecoder.FSKDecoderCallback;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.os.Bundle;
 
-public class PCM extends ActionBarActivity {
+public class PCM extends AppCompatActivity {
 
 	protected FSKConfig mConfig;
 	protected FSKDecoder mDecoder;

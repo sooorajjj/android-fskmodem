@@ -1,7 +1,7 @@
-/**    
- *   This file is part of the FSKModem java/android library for 
- *   processing FSK audio signals. 
- *   
+/**
+ *   This file is part of the FSKModem java/android library for
+ *   processing FSK audio signals.
+ *
  *   The FSKModem library is developed by Ivan Ganev, CEO at
  *   Cytec BG Ltd.
  *
@@ -33,17 +33,17 @@ import com.mmx.fsk.fskmodem.FSKDecoder;
 import com.mmx.fsk.fskmodem.FSKDecoder.FSKDecoderCallback;
 import com.mmx.fsk.wav.WavToPCM;
 import com.mmx.fsk.wav.WavToPCM.WavInfo;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.os.Bundle;
 
-public class wav extends ActionBarActivity {
+public class wav extends AppCompatActivity {
 
 	protected FSKConfig mConfig;
 	protected FSKDecoder mDecoder;
-	
+
 	protected Runnable mPCMFeeder = new Runnable() {
-		
+
 		@Override
 		public void run() {
 			try {
@@ -52,34 +52,34 @@ public class wav extends ActionBarActivity {
 
 				//get information about the WAV file
 				WavInfo info = WavToPCM.readHeader(input);
-				
+
 				//get the raw PCM data
 				ByteBuffer pcm = ByteBuffer.wrap(WavToPCM.readWavPcm(info, input));
 
-				//the decoder has 1 second buffer (equals to sample rate), 
-				//so we have to fragment the entire file, 
+				//the decoder has 1 second buffer (equals to sample rate),
+				//so we have to fragment the entire file,
 				//to prevent buffer overflow or rejection
 				byte[] buffer = new byte[1024];
-						
-				//feed signal little by little... another way to do that is to 
-				//check the returning value of appendSignal(), it returns the 
+
+				//feed signal little by little... another way to do that is to
+				//check the returning value of appendSignal(), it returns the
 				//remaining space in the decoder signal buffer
 				while (pcm.hasRemaining()) {
-					
+
 					if (pcm.remaining() > 1024) {
 						pcm.get(buffer);
 					}
 					else {
 						buffer = new byte[pcm.remaining()];
-						
+
 						pcm.get(buffer);
 					}
-					
+
 					mDecoder.appendSignal(buffer);
-					
+
 					Thread.sleep(100);
 				}
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
@@ -92,9 +92,9 @@ public class wav extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_wav);
-		
+
 		/// INIT FSK CONFIG
-		
+
 		try {
 			mConfig = new FSKConfig(FSKConfig.SAMPLE_RATE_29400, FSKConfig.PCM_8BIT, FSKConfig.CHANNELS_MONO, FSKConfig.SOFT_MODEM_MODE_4, FSKConfig.THRESHOLD_20P);
 		} catch (IOException e1) {
@@ -102,36 +102,36 @@ public class wav extends ActionBarActivity {
 		}
 
 		/// INIT FSK DECODER
-		
+
 		mDecoder = new FSKDecoder(mConfig, new FSKDecoderCallback() {
-			
+
 			@Override
 			public void decoded(byte[] newData) {
-				
+
 				final String text = new String(newData);
-				
+
 				runOnUiThread(new Runnable() {
 					public void run() {
-						
+
 						TextView view = ((TextView) findViewById(R.id.result));
-						
+
 						view.setText(view.getText()+text);
 					}
 				});
 			}
 		});
-		
+
 		///
-		
+
 		new Thread(mPCMFeeder).start();
 	}
 
 	@Override
 	protected void onDestroy() {
-		
+
 		mDecoder.stop();
-		
+
 		super.onDestroy();
 	}
-	
+
 }
